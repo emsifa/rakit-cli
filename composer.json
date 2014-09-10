@@ -1,12 +1,13 @@
 {
-    "name": "rakit/command",
-    "description": "Just a simple PHP command line builder like laravel artisan",
+    "name": "rakit/cli",
+    "description": "Just a simple PHP command line builder to create CLI application",
     "authors": [
         {
             "name": "Muhammad Syifa",
-            "email": "freakzmail@gmail.com"
+            "email": "emsifa@gmail.com"
         }
     ],
+    "license": "MIT",
     "require": {
 		"php": ">=5.3.3"
     },
