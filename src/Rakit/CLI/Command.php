@@ -111,7 +111,8 @@ class Command {
 		$inputed_options = array();
 		$args = array();
 		$options = array();
-		
+
+
 		//extract argv into inputed_args and inputed_options
 		foreach($argv as $arg) {
 			if($this->isOption($arg)) {
@@ -133,7 +134,8 @@ class Command {
 				$this->console->write("#ERROR : ");
 				$this->console->error("Argument '".$arg_setting['name']."' is required");
 			} else {
-				$args[$arg_setting['name']] = $inputed_args[$i];
+				$value = isset($inputed_args[$i])? $inputed_args[$i] : NULL;
+				$args[$arg_setting['name']] = $value;
 			}
 		}
 		
@@ -150,7 +152,7 @@ class Command {
 				} else {
 					$option_value = trim($inputed_options[$opt_name]);
 				}
-				
+
 				$options[$opt_name] = $option_value;
 
 				switch($opt_setting['type']) {
@@ -163,11 +165,15 @@ class Command {
 						
 						break;
 					case static::OPT_BOOLEAN:
-						$true = array('true', '1', 'yes', 'on');
-						$false = array('false', '0', 'no', 'off', null);
+						$true = array('true', '1', 'yes', 'on', null);
+						$false = array('false', '0', 'no', 'off');
 
-						if(in_array($option_value, $true) OR in_array($option_value, $false)) {
-							$options[$opt_name] = in_array($option_value, $true);
+						if(!array_key_exists($opt_name, $inputed_options)) {
+							$options[$opt_name] = FALSE;
+						} elseif(in_array($option_value, $true)) {
+							$options[$opt_name] = TRUE;
+						} elseif(in_array($option_value, $false)) {
+							$options[$opt_name] = FALSE;
 						} else {
 							$this->console->write("#ERROR : ");
 							$this->console->error("Option '".$opt_name."' must be boolean(true|false, 0|1, on|off, yes|no)");
@@ -200,7 +206,7 @@ class Command {
 	protected function parseOption($arg)
 	{
 		preg_match('/^\--(?<optname>\w+)(\=(?<optval>.*))?/i', $arg, $match);
-		if(empty($match['optval'])) $match['optval'] = NULL;
+		if(!isset($match['optval'])) $match['optval'] = NULL;
 		
 		return array($match['optname'], $match['optval']);
 	}

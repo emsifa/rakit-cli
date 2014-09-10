@@ -11,7 +11,7 @@ class App {
 	public function __construct(array $argv)
 	{
 		$this->argv = $argv;
-		$this->command("lists", array($this, "showLists"), "show list commands");
+		$this->command("lists", array($this, "commandShowLists"), "show list commands");
 		$this->setDefaultCommand("lists");
 	}
 	
@@ -48,7 +48,7 @@ class App {
 		}
 	}
 
-	public function showLists(Console $console)
+	public function commandShowLists(Console $console)
 	{
 		$console->writeln("LIST COMMANDS");
 

@@ -164,7 +164,7 @@ class Console {
 	
 	public function argument($arg_name, $default = NULL)
 	{
-		if(empty($this->arguments[$arg_name])) {
+		if(is_null($this->arguments[$arg_name])) {
 			return $default;
 		} else {
 			return $this->arguments[$arg_name];
@@ -188,7 +188,7 @@ class Console {
 	
 	public function option($opt_name, $default = NULL)
 	{
-		if(empty($this->options[$opt_name])) {
+		if(is_null($this->options[$opt_name])) {
 			return $default;
 		} else {
 			return $this->options[$opt_name];
