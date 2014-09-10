@@ -10,12 +10,12 @@ Simple PHP framework untuk aplikasi CLI.
 // [yourproject]/cli.php
 
 // pastikan sudah meload 3 class di file-file berikut
-require('src/Rakit/Command/Command.php');
-require('src/Rakit/Command/Console.php');
-require('src/Rakit/Command/App.php');
+require('src/Rakit/CLI/Command.php');
+require('src/Rakit/CLI/Console.php');
+require('src/Rakit/CLI/App.php');
 
 // membuat aplikasi CLI
-$cli = new Rakit\Command\App;
+$cli = new Rakit\CLI\App;
 
 // mendaftarkan sebuah command
 $cli->command("hello", function($console) {
@@ -58,7 +58,7 @@ Sedangkan untuk mengambil nilai dari option, gunakan `$console->option($opt_name
 
 Contoh:
 ```php
-use Rakit\Command\Command;
+use Rakit\CLI\Command;
 
 $cli->command("hello", function($console) {
 	$name = $console->argument("name");
