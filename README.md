@@ -15,7 +15,7 @@ require('src/Rakit/CLI/Console.php');
 require('src/Rakit/CLI/App.php');
 
 // membuat aplikasi CLI
-$cli = new Rakit\CLI\App;
+$cli = new Rakit\CLI\App($argv);
 
 // mendaftarkan sebuah command
 $cli->command("hello", function($console) {
