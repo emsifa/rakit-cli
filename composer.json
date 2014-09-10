@@ -1,0 +1,16 @@
+{
+    "name": "rakit/command",
+    "description": "Just a simple PHP command line builder like laravel artisan",
+    "authors": [
+        {
+            "name": "Muhammad Syifa",
+            "email": "freakzmail@gmail.com"
+        }
+    ],
+    "require": {
+		"php": ">=5.3.3"
+    },
+    "autoload": {
+        "psr-0": { "Rakit": "src/" }
+    }
+}
