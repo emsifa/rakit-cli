@@ -58,7 +58,6 @@ class Console {
 	
 	public function writeln($msg = "", $fg_color = NULL, $bg_color = NULL)
 	{
-		printf("\n");
 		$this->write($msg, $fg_color, $bg_color);
 		printf("\n");
 	}
