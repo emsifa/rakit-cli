@@ -62,9 +62,9 @@ class Console {
 		printf("\n");
 	}
 	
-	public function ask($question, $default = NULL)
+	public function ask($question, $default = NULL, $fg_color = null, $bg_color = null)
 	{
-		$this->write("\n".$question);
+		$this->write("\n".$question, $fg_color, $bg_color);
 		$answer = $this->prompt();
 		
 		return empty($answer)? $default : $answer;
