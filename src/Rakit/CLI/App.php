@@ -30,6 +30,11 @@ class App {
 	{
 		return $this->commands;
 	}
+
+	public function getCommandByName($cmd_name)
+	{
+		return array_key_exists($cmd_name, $this->commands)? $this->commands[$cmd_name] : null;
+	}
 	
 	public function run()
 	{	
@@ -41,8 +46,20 @@ class App {
 			$cmd_name = $this->default_command;
 		}
 
-		if(array_key_exists($cmd_name, $this->commands)) {
-			$this->commands[$cmd_name]->run($argv);
+		$this->call($cmd_name, $argv);
+	}
+
+	public function call($cmd_name, $args, array $options = array())
+	{
+		$args = (array) $args;
+		$command = $this->getCommandByName($cmd_name);
+
+		foreach($options as $opt_name => $opt_value) {
+			$args[] = "--{$opt_name}={$opt_value}";
+		}
+
+		if($command) {
+			$command->run($args);
 		} else {
 			printf("Command $cmd_name not found");
 		}
